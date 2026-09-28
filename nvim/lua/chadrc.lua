@@ -82,6 +82,12 @@ M.base46 = {
 	theme = "catppuccin",
 	changed_themes = { catppuccin = ambxst_theme() },
 
+	-- Keep indentation guides visible against the translucent Ambxst background.
+	hl_override = {
+		IblIndent = { fg = "#8f7568", nocombine = true },
+		IblScope = { fg = "#ffb4a7", nocombine = true },
+	},
+
 	-- hl_override = {
 	-- 	Comment = { italic = true },
 	-- 	["@comment"] = { italic = true },
@@ -89,11 +95,16 @@ M.base46 = {
 }
 
 M.ui = {
-  -- Compact VS Code-like sections: mode, file, git/LSP info, and position.
+  -- Segmented statusline using the active Ambxst palette.
   statusline = {
     enabled = true,
     theme = "default",
     separator_style = "round",
+  },
+
+  -- Remove the empty horizontal tab/buffer bar at the top.
+  tabufline = {
+    enabled = false,
   },
 }
 

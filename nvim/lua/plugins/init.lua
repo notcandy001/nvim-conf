@@ -25,6 +25,10 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = function(_, opts)
+      opts.indent = vim.tbl_deep_extend("force", opts.indent or {}, {
+        char = "│",
+        highlight = "IblIndent",
+      })
       opts.scope = vim.tbl_deep_extend("force", opts.scope or {}, {
         enabled = true,
         show_start = true,
