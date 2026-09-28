@@ -13,6 +13,28 @@ return {
     end,
   },
 
+  -- VS Code-like completion: LSP suggestions, snippets, buffer words, and paths.
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      return require("configs.cmp").setup(opts)
+    end,
+  },
+
+  -- Show the beginning and end of the current indentation block.
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = function(_, opts)
+      opts.scope = vim.tbl_deep_extend("force", opts.scope or {}, {
+        enabled = true,
+        show_start = true,
+        show_end = true,
+        show_exact_scope = true,
+      })
+      return opts
+    end,
+  },
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 

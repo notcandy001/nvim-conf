@@ -89,8 +89,12 @@ M.base46 = {
 }
 
 M.ui = {
-  -- Keep the editor's bottom status bar hidden, as requested.
-  statusline = { enabled = false },
+  -- Compact VS Code-like sections: mode, file, git/LSP info, and position.
+  statusline = {
+    enabled = true,
+    theme = "default",
+    separator_style = "round",
+  },
 }
 
 -- Called by the Ambxst colors.json watcher after a wallpaper changes.
