@@ -40,9 +40,9 @@ if ok_base46 then
   local defaults_cache = vim.g.base46_cache .. "defaults"
   local statusline_cache = vim.g.base46_cache .. "statusline"
 
-  if vim.fn.filereadable(defaults_cache) == 0 or vim.fn.filereadable(statusline_cache) == 0 then
-    pcall(base46.compile)
-  end
+  -- Compile on every startup so the current Ambxst wallpaper is applied even
+  -- when the cache files already exist from a previous wallpaper.
+  pcall(base46.compile)
 
   if vim.fn.filereadable(defaults_cache) == 1 then
     dofile(defaults_cache)
@@ -62,16 +62,14 @@ end)
 vim.opt.termguicolors = true
 
 
----matugen/pywal
-
-os.execute("python ~/.config/nvim/pywal/chadwal.py &> /dev/null &")
-
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd("Signal", {
   pattern = "SIGUSR1",
   callback = function()
+    if _G.reload_ambxst_theme then
+      _G.reload_ambxst_theme()
+    end
     require('nvchad.utils').reload()
   end
 })
-
